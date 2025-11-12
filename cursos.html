@@ -1,0 +1,126 @@
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mis Cursos y Notas</title>
+  <style>
+    :root{--bg:#0f1724;--accent:#06b6d4;--muted:#94a3b8;--ff:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071028 0%, #081426 60%);color:#e6eef6;font-family:var(--ff);display:flex;flex-direction:column;align-items:center;padding:40px}
+    h1{margin-bottom:20px;color:var(--accent)}
+    table{border-collapse:collapse;width:100%;max-width:700px;background:rgba(255,255,255,0.02);border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(2,6,23,0.5);margin-bottom:20px}
+    th,td{padding:14px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.05)}
+    th{background:rgba(255,255,255,0.05);color:var(--accent)}
+    tr:last-child td{border-bottom:none}
+    a{color:var(--accent);text-decoration:none;font-weight:600;cursor:pointer}
+    a:hover{text-decoration:underline}
+    .btn{margin-top:24px;background:var(--accent);color:#072031;padding:10px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+    #notas-container{width:100%;max-width:700px;display:none;flex-direction:column;align-items:center;animation:fadeIn 0.4s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <h1>Mis Cursos</h1>
+  <table>
+    <thead>
+      <tr><th>Curso</th><th>Código</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a onclick="mostrarNotas('matem')">MATEM. GEST. NEGOCIOS</a></td><td>306</td></tr>
+      <tr><td><a onclick="mostrarNotas('herramientas')">HERR. INF. GEST. II</a></td><td>401</td></tr>
+      <tr><td><a onclick="mostrarNotas('admin')">FUND. ADMINISTRACIÓN</a></td><td>303</td></tr>
+      <tr><td><a onclick="mostrarNotas('estadistica')">ESTA. BÁS. NEGOC.</a></td><td>2045</td></tr>
+      <tr><td><a onclick="mostrarNotas('conta')">CONTA. GENERAL</a></td><td>342</td></tr>
+    </tbody>
+  </table>
+
+  <div id="notas-container"></div>
+
+  <button class="btn" onclick="cerrarSesion()">Cerrar sesión</button>
+
+  <script>
+    function cerrarSesion(){
+      window.location.href = 'index.html';
+    }
+
+    function mostrarNotas(curso){
+      const contenedor = document.getElementById("notas-container");
+      let html = "";
+
+      if(curso === "matem"){
+        html = `
+          <h2>Notas - MATEM. GEST. NEGOCIOS</h2>
+          <table>
+            <tr><th>Evaluación</th><th>Nota</th></tr>
+            <tr><td>Examen escrito 1</td><td>11</td></tr>
+            <tr><td>Examen escrito 2</td><td>14</td></tr>
+            <tr><td>Examen escrito 3</td><td>-</td></tr>
+            <tr><td>Examen escrito 4</td><td>-</td></tr>
+            <tr><td>Ejercicio colaborativo</td><td>15</td></tr>
+          </table>
+        `;
+      } 
+      else if(curso === "herramientas"){
+        html = `
+          <h2>Notas - HERR. INF. GEST. II</h2>
+          <table>
+            <tr><th>Evaluación</th><th>Nota</th></tr>
+            <tr><td>Examen escrito FFINA</td><td>11</td></tr>
+            <tr><td>Examen escrito VBA</td><td>13</td></tr>
+            <tr><td>Trabajo de investigación</td><td>-</td></tr>
+            <tr><td>Examen escrito SQL</td><td>-</td></tr>
+            <tr><td>Examen escrito PYTHO</td><td>-</td></tr>
+          </table>
+        `;
+      } 
+      else if(curso === "admin"){
+        html = `
+          <h2>Notas - FUND. ADMINISTRACIÓN</h2>
+          <table>
+            <tr><th>Evaluación</th><th>Nota</th></tr>
+            <tr><td>EVC</td><td>-</td></tr>
+            <tr><td>Control Lectura</td><td>14</td></tr>
+            <tr><td>Examen escrito EE</td><td>13</td></tr>
+            <tr><td>Examen escrito EE (2)</td><td>-</td></tr>
+            <tr><td>Participación PAR</td><td>-</td></tr>
+            <tr><td>Informe IN</td><td>-</td></tr>
+          </table>
+        `;
+      }
+      else if(curso === "estadistica"){
+        html = `
+          <h2>Notas - ESTA. BÁS. NEGOC.</h2>
+          <table>
+            <tr><th>Evaluación</th><th>Nota</th></tr>
+            <tr><td>Examen escrito 1</td><td>10</td></tr>
+            <tr><td>Examen escrito 2</td><td>13</td></tr>
+            <tr><td>Ejercicio colaborativo</td><td>15</td></tr>
+            <tr><td>Trabajo de investigación</td><td>-</td></tr>
+            <tr><td>Examen escrito 3</td><td>-</td></tr>
+          </table>
+        `;
+      }
+      else if(curso === "conta"){
+        html = `
+          <h2>Notas - CONTA. GENERAL</h2>
+          <table>
+            <tr><th>Evaluación</th><th>Nota</th></tr>
+            <tr><td>Examen escrito 1</td><td>08</td></tr>
+            <tr><td>Trabajo de investigación 1</td><td>14</td></tr>
+            <tr><td>Examen escrito 2</td><td>14</td></tr>
+            <tr><td>Trabajo de producción 1</td><td>-</td></tr>
+            <tr><td>Examen escrito 3</td><td>-</td></tr>
+          </table>
+        `;
+      }
+      else {
+        html = `<p>No hay notas registradas para este curso.</p>`;
+      }
+
+      contenedor.innerHTML = html;
+      contenedor.style.display = "flex";
+      contenedor.scrollIntoView({behavior:"smooth"});
+    }
+  </script>
+</body>
+</html>
